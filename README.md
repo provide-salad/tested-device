@@ -26,9 +26,12 @@ if you want to install it in the initramfs, you can use the shell script and ins
 
 ```shell
 #!/bin/busybox sh
-test -e /dev || mkdir /dev
-mount -t devtmpfs devtmpfs /dev
+export PATH=/bin:/sbin:/usr/bin:/usr/sbin
+busybox --install /bin || :
+test -e /dev || mkdir /dev || exit
+mount -t devtmpfs devtmpfs /dev || exit
 exec /sbin/tested-device
+read
 ```
 
 It does these things:
@@ -76,8 +79,7 @@ mke2fs -d root root.ext2 256K
 ```shell
 saladBox tested-device "path/to/vmlinuz"
 saladBox tested-device root.ext2 00-rootfs
-saladBox tested-device tested-device 01-tested-device
-saladBox tested-device "path/to/newroot.ext2" 02-newroot
+saladBox tested-device "path/to/newroot.ext2" 01-newroot
 saladBox tested-device
 ```
 
