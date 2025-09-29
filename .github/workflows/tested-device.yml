@@ -1,0 +1,32 @@
+name: tested device
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    # - name: configure
+    #  run: ./configure
+    - name: Run make script
+      run: make
+    # - name: make check
+    #  run: make check
+    #- name: make distcheck
+    #  run: make distcheck
+    - name: Upload a Build Artifact
+      uses: actions/upload-artifact@v4.6.2
+      with:
+        name: tested-device # optional, default is artifact
+        path: tested-device
+        # if-no-files-found: # optional, default is warn
+        # retention-days: # optional
+        # compression-level: # optional, default is 6
+        # overwrite: # optional, default is false
+        # include-hidden-files: # optional, default is false
