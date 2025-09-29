@@ -1,8 +1,6 @@
 # Makefile
 TARGET= $(eval T += $1)$(eval O += $(patsubst %,%.o,$2))$(eval H.$1 := $(patsubst %,%.h,$3))$(eval O.$1 := $2)
-CC= /br_musl/output/host/bin/x86_64-vDopW0fykec_-linux-musl-gcc
-CONFIG_UUID=f4d4bafd-661f-4823-8e5f-461b118ab1cb
-#CONFIG_UUID= 00000000-00000000-00000000-00000000
+#CONFIG_UUID=f4d4bafd-661f-4823-8e5f-461b118ab1cb
 
 # ---
 
